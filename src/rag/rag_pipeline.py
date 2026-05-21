@@ -38,6 +38,7 @@ def generate_answer(query: str):
     
     # Filter out chunks with distance score above 0.65
     filtered_context_chunks = []
+    retrieved_chunks = []  # For UI display
     print("\n--- RETRIEVED CONTEXT ---")
     for i in range(len(documents)):
         distance = distances[i]
@@ -50,6 +51,7 @@ def generate_answer(query: str):
 {text}
 """
             filtered_context_chunks.append(formatted_chunk)
+            retrieved_chunks.append({"text": formatted_chunk, "distance": distance})
             print(f"[Distance: {distance:.4f}] Included: {text[:80].replace(chr(10), ' ')}...")
         else:
             print(f"[Distance: {distance:.4f}] Ignored (above 0.65 threshold)")
@@ -87,6 +89,8 @@ QUESTION:
     print("\n--- FINAL GENERATED ANSWER ---")
     print(response)
     print("=" * 50)
+    
+    return response, retrieved_chunks
 
 if __name__ == "__main__":
     # Test queries: one in-context, one out-of-context
