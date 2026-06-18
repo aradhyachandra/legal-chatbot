@@ -1,3 +1,10 @@
+import sys
+from pathlib import Path
+
+# Add the project root to sys.path so "from src.…" imports work
+# when Streamlit runs this file directly.
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
 import streamlit as st
 from src.rag.rag_pipeline import generate_answer
 

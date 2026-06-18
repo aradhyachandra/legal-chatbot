@@ -58,9 +58,12 @@ def generate_answer(query: str):
             
     if not filtered_context_chunks:
         print("No context found below the distance threshold of 0.65.")
-        context_str = ""
-    else:
-        context_str = "\n\n".join(filtered_context_chunks)
+        return (
+            "I don't have sufficient information in the provided documents to answer this question.",
+            []
+        )
+
+    context_str = "\n\n".join(filtered_context_chunks)
         
     # Construct the strictly grounded prompt
     prompt = f"""Answer the question using ONLY the provided context.
