@@ -2,6 +2,13 @@
 
 A fully local, privacy-first **Retrieval-Augmented Generation (RAG)** chatbot for Indian legal documents. Ask natural language questions about any indexed PDF — the system retrieves the most relevant passages and generates a grounded answer using a local LLM, with **zero data leaving your machine**.
 
+## Demo
+**In-domain question:** the answer is grounded in the retrieved clause, with its source, page and distance score shown.
+![In-domain query](docs/demo-in-domain.png)
+
+**Out-of-domain question:** no chunk passes the 0.65 distance threshold, so it refuses instead of guessing.
+![Out-of-domain query](docs/demo-out-of-domain.png)
+
 ---
 
 ## 🏗️ Architecture Overview
